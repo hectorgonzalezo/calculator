@@ -1,0 +1,38 @@
+*{
+    outline-style: dashed;
+} 
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#buttons-area {
+    display: flex;
+}
+
+#numbers-area,
+#operators-area,
+#top-buttons-area {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#clear-button,
+#delete-button {
+    flex: 2 0 auto;
+}
+
+#operators-area {
+    flex-direction: column;
+}
+
+.number-button{
+    width: 33%;
+}
+
+#plus-button{
+    flex: 1 0 auto;
+}
+
