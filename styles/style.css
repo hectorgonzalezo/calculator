@@ -8,8 +8,18 @@ body {
     justify-content: center;
 }
 
-#buttons-area {
+#buttons-area,
+#display-area {
     display: flex;
+}
+
+#display-area {
+    justify-content: center;
+    text-align: right;
+}
+
+#display {
+    flex: 1 1 auto;
 }
 
 #numbers-area,
