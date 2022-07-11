@@ -65,7 +65,8 @@ let equalsJustP
 
 //updates display when clicking on number buttons
 function populateDisplay (number) {
-    if (displayValue.length <= 10) {//limit the number of digits to 10
+//limit the number of digits to 10, and stop adding zeroes at first
+    if (displayValue.length <= 10 && !(number == '0' && displayValue == '')) {
     if(operatorJustPressed){//if an operator is pressed clear the display
         displayValue = number
         operatorJustPressed = false;
