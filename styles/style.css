@@ -1,11 +1,14 @@
-*{
-    outline-style: dashed;
-} 
+
 body {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+}
+
+#calculator-div{
+    border-style: dotted;
+    border-width: 0.2em;
 }
 
 #buttons-area,
@@ -20,6 +23,7 @@ body {
 
 #display {
     flex: 1 1 auto;
+    min-height: 25px;
 }
 
 #numbers-area,
@@ -38,8 +42,8 @@ body {
     flex-direction: column;
 }
 
-.number-button{
-    width: 33%;
+#numbers-area > button{
+    width: 33.3%;
 }
 
 #plus-button{
