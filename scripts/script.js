@@ -19,17 +19,10 @@ function divide(a, b) {
     return a / b
 }
 
-const power = function (a, b) {
+function power(a, b) {
     return a ** b
 };
 
-const factorial = function (num) {
-    let result = 1;
-    for (let i = 1; i <= num; i++) {
-        result *= i
-    }
-    return result
-};
 
 //function that takes two numbers and an operator
 //and calls the relevant function from above
@@ -54,6 +47,8 @@ function operate(operator, stringNum1, stringNum2) {
             } else {
                 return divide(num1, num2)
             }
+        case '**':
+            return power(num1, num2)
         default:
             break
     }
@@ -86,12 +81,11 @@ function populateDisplay(number) {
             operatorJustPressed = false;
         } else if (equalsJustPressed) {
             displayValue = number;
-            equalsJustPressed = false;
         } else {
             displayValue += number
-        }
+        }    
+        equalsJustPressed = false;
         display.innerText = displayValue
-
     }
 };
 
@@ -106,8 +100,8 @@ function displayResult(result) {
     //display result
     displayValue = result;
     display.innerText = result;
-    currentOperator = ''//restart operator to string together several operations
-    operatorJustPressed = true
+    currentOperator = '';//restart operator to string together several operations
+    operatorJustPressed = true;
 }
 
 //reinitialize values used by calculator functions
@@ -121,10 +115,34 @@ function clearData() {
     displayResult('')
 }
 
+function callOperateFromButton(operator) {
+
+    operatorJustPressed = true;
+
+    if (currentOperator != '') {//string together operations
+        let result = operate(currentOperator, previousNumber, displayValue)
+        displayResult(result)
+    }
+    previousNumber = displayValue;
+    currentOperator = operator;
+}
+
+function callEquals () {
+if (currentOperator != '') {//so that equals only works once
+    let result = operate(currentOperator, previousNumber, displayValue);
+    //if user didn't try to divide by 0
+    if (result != 'divide by 0') {
+        displayResult(result);
+    };
+    equalsJustPressed = true;
+}
+}
+
 
 //adds previous function to number buttons
 numberButtons.forEach(button => {
-    button.addEventListener('click', (e) => populateDisplay(e.target.innerText))
+    button.addEventListener('click', (e) => populateDisplay(e.target.innerText));
+    equalsJustPressed = false;
 });
 
 
@@ -133,30 +151,14 @@ numberButtons.forEach(button => {
 //and save which operator has been used
 operatorButtons.forEach(button => {
     button.addEventListener('click', (e) => {
-
-        operatorJustPressed = true;
-
-        if (currentOperator != '') {//string together operations
-            let result = operate(currentOperator, previousNumber, displayValue)
-            displayResult(result)
-        }
-        previousNumber = displayValue;
-        currentOperator = e.target.innerText;
+        callOperateFromButton(e.target.innerText)
     })
 });
 
 
+
 //use operate function with '=' button
-equalsButton.addEventListener('click', (e) => {
-    if (currentOperator != '') {//so that equals only works once
-        let result = operate(currentOperator, previousNumber, displayValue);
-        //if user didn't try to divide by 0
-        if (result != 'divide by 0') {
-            displayResult(result);
-        };
-        equalsJustPressed = true;
-    }
-})
+equalsButton.addEventListener('click', (e) => callEquals())
 
 
 //wipe data with "clear" button
@@ -173,12 +175,37 @@ dotButton.addEventListener('click', (e) => {
 })
 
 //delete button erases last number in display
-deleteButton.addEventListener('click', (e) =>{
+deleteButton.addEventListener('click', (e) => {
     if (displayValue.length > 1) {
-        displayValue = displayValue.substring(0, displayValue.length-1);
+        displayValue = displayValue.substring(0, displayValue.length - 1);
         display.innerText = displayValue;
-    } else if (displayValue.length == 1){
+    } else if (displayValue.length == 1) {
         displayValue = ''
         display.innerText = displayValue;
-}
+    }
 })
+
+
+
+//keyboard support
+//listen to every keystroke on keyboard
+document.addEventListener('keydown', (e) => {
+    const key = e.key;
+    switch (true) {
+        case /\d/.test(key)://if pressing a digit
+            populateDisplay(key)
+            break
+        case /[+-]/.test(key):
+            callOperateFromButton(key)
+            console.log(key)
+            break
+        case /=/.test(key):
+            console.log('enter')
+            callEquals()
+            break
+        default:
+            break
+    }
+})
+//if its a number or operator, press that button
+
