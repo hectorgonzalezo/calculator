@@ -46,7 +46,14 @@ function operate(operator, stringNum1, stringNum2) {
         case '*':
             return multiply(num1, num2)
         case '/':
+            //if user is trying to dive by 0
+            if (stringNum1 == '0' || stringNum2 == '0'){
+                currentOperator = '';//so that equals doesn't try to display result
+                display.innerText = "Cant divide by zero!";
+                return 'divide by 0'
+            } else {
             return divide(num1, num2)
+            }
         default:
             break
     }
@@ -73,8 +80,8 @@ function populateDisplay(number) {
             displayValue = number;
             operatorJustPressed = false;
         } else if (equalsJustPressed){
-            console.log('equals');
             equalsJustPressed = false;
+            displayValue = number;
         } else  {
             displayValue += number
         }
@@ -110,7 +117,10 @@ operatorButtons.forEach(button => {
 equalsButton.addEventListener('click', (e) => {
     if (currentOperator != '') {//so that equals only works once
         let result = operate(currentOperator, previousNumber, displayValue);
+        //if user didn't try to divide by 0
+        if (result != 'divide by 0'){
         displayResult(result);
+        };
         equalsJustPressed = true;
     }
 })
