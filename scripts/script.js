@@ -171,3 +171,14 @@ dotButton.addEventListener('click', (e) => {
         populateDisplay(e.target.innerText)
     }
 })
+
+//delete button erases last number in display
+deleteButton.addEventListener('click', (e) =>{
+    if (displayValue.length > 1) {
+        displayValue = displayValue.substring(0, displayValue.length-1);
+        display.innerText = displayValue;
+    } else if (displayValue.length == 1){
+        displayValue = ''
+        display.innerText = displayValue;
+}
+})
