@@ -1,14 +1,14 @@
 //basic operator functions
-function add (a, b) {
+function add(a, b) {
     return a + b
 };
 
-function subtract (a,b) {
+function subtract(a, b) {
     return a - b
 };
 
-function sum (arr) {
-    return arr.reduce((a,b) => a + b, 0)
+function sum(arr) {
+    return arr.reduce((a, b) => a + b, 0)
 };
 
 function multiply(a, b) {
@@ -19,11 +19,11 @@ function divide(a, b) {
     return a / b
 }
 
-const power = function(a, b) {
+const power = function (a, b) {
     return a ** b
 };
 
-const factorial = function(num) {
+const factorial = function (num) {
     let result = 1;
     for (let i = 1; i <= num; i++) {
         result *= i
@@ -34,7 +34,7 @@ const factorial = function(num) {
 //function that takes two numbers and an operator
 //and calls the relevant function from above
 // String Int Int -> Int
-function operate (operator, stringNum1, stringNum2){
+function operate(operator, stringNum1, stringNum2) {
     //convert to integers
     let num1 = parseInt(stringNum1);
     let num2 = parseInt(stringNum2)
@@ -48,7 +48,7 @@ function operate (operator, stringNum1, stringNum2){
         case '/':
             return divide(num1, num2)
         default:
-            break   
+            break
     }
 }
 
@@ -57,28 +57,33 @@ const numberButtons = document.querySelectorAll('.number-button')
 const operatorButtons = document.querySelectorAll('.operator-button')
 const display = document.querySelector('#display')
 const equalsButton = document.querySelector('#equals-button')
+const clearButton = document.querySelector('#clear-button')
 let displayValue = ''
 let previousNumber = 0
 let currentOperator = ''
 let operatorJustPressed = false
-let equalsJustP
+let equalsJustPressed = false
 
 //updates display when clicking on number buttons
-function populateDisplay (number) {
-//limit the number of digits to 10, and stop adding zeroes at first
-    if (displayValue.length <= 10 && !(number == '0' && displayValue == '')) {
-    if(operatorJustPressed){//if an operator is pressed clear the display
-        displayValue = number
-        operatorJustPressed = false;
-    } else {
-    displayValue += number
-    }
-    display.innerText = displayValue
+function populateDisplay(number) {
+    console.log(number)
+    //limit the number of digits to 10, and stop adding zeroes at first
+    if (displayValue.toString().length <= 10 && !(number == '0' && displayValue == '')) {
+        if (operatorJustPressed) {//if an operator is pressed clear the display
+            displayValue = number;
+            operatorJustPressed = false;
+        } else if (equalsJustPressed){
+            console.log('equals');
+            equalsJustPressed = false;
+        } else  {
+            displayValue += number
+        }
+        display.innerText = displayValue
     }
 };
 
 //adds previous function to number buttons
-numberButtons.forEach(button=> {
+numberButtons.forEach(button => {
     button.addEventListener('click', (e) => populateDisplay(e.target.innerText))
 });
 
@@ -91,7 +96,7 @@ operatorButtons.forEach(button => {
 
         operatorJustPressed = true;
 
-        if (currentOperator != ''){//string together operations
+        if (currentOperator != '') {//string together operations
             let result = operate(currentOperator, previousNumber, displayValue)
             displayResult(result)
         }
@@ -104,21 +109,38 @@ operatorButtons.forEach(button => {
 //use operate function with '=' button
 equalsButton.addEventListener('click', (e) => {
     if (currentOperator != '') {//so that equals only works once
-    let result = operate(currentOperator, previousNumber, displayValue)
-    displayResult(result)
+        let result = operate(currentOperator, previousNumber, displayValue);
+        displayResult(result);
+        equalsJustPressed = true;
     }
 })
 
+
+//This function displays the result on the display area
 function displayResult(result) {
+    //round long numbers, limit to 10 digits
     let numberLength = result.toString().length;
     let numberDecimalLength = Math.floor(result).toString.length;
-    if (numberLength >= 10){//round long numbers
-        result = result.toFixed(10-numberDecimalLength-1);
+    if (numberLength >= 10) {
+        result = result.toFixed(10 - numberDecimalLength - 1);
     };
-
+    //display result
     displayValue = result;
     display.innerText = result;
     currentOperator = ''//restart operator to string together several operations
     operatorJustPressed = true
+}
+
+//wipe data with "clear" button
+clearButton.addEventListener('click', (e) => clearData())
+
+function clearData() {
+    let displayValue = ''
+    let previousNumber = 0
+    let currentOperator = ''
+    let operatorJustPressed = false
+    let equalsJustPressed = false
+
+    displayResult('')
 }
 
