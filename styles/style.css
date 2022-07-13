@@ -4,11 +4,18 @@ body {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+    background-color: rgb(197, 223, 172);
 }
 
 #calculator-div{
-    border-style: dotted;
-    border-width: 0.2em;
+    border-style: solid;
+    border-width: 1em;
+    border-radius: 2%;
+    border-color: rgb(202, 198, 198);
+    min-width: 500px;
+    min-height: 500px;
+    display: flex;
+    flex-flow: column;
 }
 
 #buttons-area,
@@ -19,12 +26,63 @@ body {
 #display-area {
     justify-content: center;
     text-align: right;
+    min-height: 100px;
+    flex: 0;
+    align-items: center;
+    font-size: 45px;
+    border-bottom: solid;
+    border-width: 0.4em;
+    border-color: rgb(202, 198, 198);
+    background-color: rgb(22, 60, 1);
+    color: rgba(255, 255, 255, 0.898);
 }
+
 
 #display {
     flex: 1 1 auto;
     min-height: 25px;
 }
+
+#buttons-area {
+    flex: 4;
+    display: flex;
+    background-color: rgb(202, 198, 198)
+}
+
+#left-buttons-area {
+    display: flex;
+    flex-direction: column;
+    flex:  3;
+}
+
+.button {
+    font-size: 2em;
+    margin: 2px;
+    border-radius: 20%;
+    background-color: rgb(138, 180, 105);
+    color: white;
+}
+
+#clear-button {
+    background-color: rgb(198, 50, 50);
+}
+
+#delete-button {
+    background-color: rgb(55, 55, 197);
+}
+
+.button:hover {
+    background-color: rgb(92, 120, 71); 
+}
+
+#clear-button:hover {
+    background-color: rgb(142, 30, 22);
+}
+
+#delete-button:hover {
+    background-color: rgb(19, 19, 133);
+}
+
 
 #numbers-area,
 #operators-area,
@@ -38,15 +96,29 @@ body {
     flex: 2 0 auto;
 }
 
+
+#top-buttons-area {
+    flex: 0.8;
+}
+
+#numbers-area {
+    flex: 3;
+}
+
 #operators-area {
     flex-direction: column;
+    flex: 1;
+}
+
+.operator-button {
+    flex: 1;
 }
 
 #numbers-area > button{
-    width: 33.3%;
+    width: 32.2%;
 }
 
 #plus-button{
-    flex: 1 0 auto;
+    flex: 2 0 auto;
 }
 

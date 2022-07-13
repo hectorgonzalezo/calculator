@@ -73,7 +73,7 @@ let currentOperator = '';
 let operatorJustPressed = false;
 let equalsJustPressed = false;
 
-const maximumDisplayLength = 15
+const maximumDisplayLength = 16
 
 //updates display when clicking on number or "." buttons
 function populateDisplay(number) {
