@@ -43,8 +43,8 @@ function operate(operator, stringNum1, stringNum2) {
             //if user is trying to dive by 0
             if (stringNum1 == '0' || stringNum2 == '0') {
                 currentOperator = '';//so that equals doesn't try to display result
-                display.innerText = "Cant divide by zero!";
-                return 'divide by 0'
+                display.innerText = "Can't divide by zero!";
+                return "Can't divide by zero!"
             } else {
                 return divide(num1, num2)
             }
@@ -134,7 +134,7 @@ function callEquals () {
 if (currentOperator != '') {//so that equals only works once
     let result = operate(currentOperator, previousNumber, displayValue);
     //if user didn't try to divide by 0
-    if (result != 'divide by 0') {
+    if (result != "Can't Divide by 0!") {
         displayResult(result);
     };
     equalsJustPressed = true;
