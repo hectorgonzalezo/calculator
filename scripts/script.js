@@ -31,6 +31,7 @@ function operate(operator, stringNum1, stringNum2) {
     //convert to Floats
     let num1 = parseFloat(stringNum1);
     let num2 = parseFloat(stringNum2)
+    console.log(operator)
     switch (operator) {
         case '+':
             return add(num1, num2);
@@ -48,6 +49,8 @@ function operate(operator, stringNum1, stringNum2) {
                 return divide(num1, num2)
             }
         case '**':
+            return power(num1, num2)
+        case '^':
             return power(num1, num2)
         default:
             break
@@ -138,6 +141,16 @@ if (currentOperator != '') {//so that equals only works once
 }
 }
 
+function callDelete () {
+    if (displayValue.length > 1) {
+        displayValue = displayValue.substring(0, displayValue.length - 1);
+        display.innerText = displayValue;
+    } else if (displayValue.length == 1) {
+        displayValue = ''
+        display.innerText = displayValue;
+    }
+}
+
 
 //adds previous function to number buttons
 numberButtons.forEach(button => {
@@ -175,34 +188,36 @@ dotButton.addEventListener('click', (e) => {
 })
 
 //delete button erases last number in display
-deleteButton.addEventListener('click', (e) => {
-    if (displayValue.length > 1) {
-        displayValue = displayValue.substring(0, displayValue.length - 1);
-        display.innerText = displayValue;
-    } else if (displayValue.length == 1) {
-        displayValue = ''
-        display.innerText = displayValue;
-    }
-})
+deleteButton.addEventListener('click', (e) => callDelete())
 
 
 
 //keyboard support
 //listen to every keystroke on keyboard
+//Equals can be called either with "=" key or enter.
+//Delete with backspace
+//clear with letter "c"
+//numbers and operators work as intended
 document.addEventListener('keydown', (e) => {
     const key = e.key;
+    console.log(key)
     switch (true) {
         case /\d/.test(key)://if pressing a digit
             populateDisplay(key)
             break
-        case /[+-]/.test(key):
+        //if pressing an operator
+        case /[+-]/.test(key) || key == '*' || key == "/" || key == "^":
             callOperateFromButton(key)
-            console.log(key)
             break
-        case /=/.test(key):
-            console.log('enter')
+        case /=/.test(key) || key == 'Enter':
             callEquals()
             break
+        case key == 'Backspace':
+            callDelete();
+            break;
+        case key == 'c':
+            clearData();
+            break;
         default:
             break
     }
