@@ -183,7 +183,7 @@ clearButton.addEventListener('click', (e) => clearData())
 dotButton.addEventListener('click', (e) => {
     //if there's a button in display
     if (!displayValue.includes('.')) {
-        populateDisplay(e.target.innerText)
+        populateDisplay('.')
     }
 })
 
@@ -204,6 +204,9 @@ document.addEventListener('keydown', (e) => {
     switch (true) {
         case /\d/.test(key)://if pressing a digit
             populateDisplay(key)
+            break
+        case key == '.':
+            dotButton.click()
             break
         //if pressing an operator
         case /[+-]/.test(key) || key == '*' || key == "/" || key == "^":
