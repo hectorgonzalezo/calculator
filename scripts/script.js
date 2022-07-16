@@ -225,5 +225,14 @@ document.addEventListener('keydown', (e) => {
             break
     }
 })
-//if its a number or operator, press that button
 
+
+
+
+//change github img src
+function mouseOverGithubImg(img) {
+    img.setAttribute('src', '../images/white-github-logo.png')
+}
+function mouseOutGithubImg(img ) {
+    img.setAttribute('src', '../images/github-logo.png')
+}

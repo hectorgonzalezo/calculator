@@ -4,10 +4,13 @@ body {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: rgb(226, 240, 216);
-    color: rgba(2, 2, 2, 0.859);
+    color:rgb(118, 30, 70);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+
 
 #calculator-div{
     border-style: solid;
@@ -18,6 +21,7 @@ body {
     min-height: 500px;
     display: flex;
     flex-flow: column;
+    margin-top: auto;
 }
 
 #buttons-area,
@@ -127,4 +131,14 @@ body {
 
 #footer {
     margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    gap: 1vw;
+    color:rgb(118, 30, 70)
+}
+
+#github-logo {
+    height:30px;
 }
