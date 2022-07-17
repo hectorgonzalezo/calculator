@@ -99,8 +99,10 @@ function displayResult(result) {
     if (numberLength >= maximumDisplayLength) {
         //if its a number with scientific notation
         if (result.toString().includes('e')) {
+            //prevent overflow
             result = result.toExponential(maximumDisplayLength - 5)
         } else if (numberDecimalLength == 1){
+            //prevent overflow in really big numbers
             result = result.toString().split('.')[0]
             result = parseInt(result).toExponential(maximumDisplayLength - 5)
         } else {
