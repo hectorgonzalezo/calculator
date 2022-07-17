@@ -31,7 +31,6 @@ function operate(operator, stringNum1, stringNum2) {
     //convert to Floats
     let num1 = parseFloat(stringNum1);
     let num2 = parseFloat(stringNum2)
-    console.log(operator)
     switch (operator) {
         case '+':
             return add(num1, num2);
@@ -100,7 +99,10 @@ function displayResult(result) {
     if (numberLength >= maximumDisplayLength) {
         //if its a number with scientific notation
         if (result.toString().includes('e')) {
-            result =    'asd'
+            result = result.toExponential(maximumDisplayLength - 5)
+        } else if (numberDecimalLength == 1){
+            result = result.toString().split('.')[0]
+            result = parseInt(result).toExponential(maximumDisplayLength - 5)
         } else {
         result = result.toFixed(maximumDisplayLength - numberDecimalLength - 1);
         }
