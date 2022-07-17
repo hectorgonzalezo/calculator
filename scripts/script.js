@@ -98,7 +98,12 @@ function displayResult(result) {
     let numberLength = result.toString().length;
     let numberDecimalLength = Math.floor(result).toString.length;
     if (numberLength >= maximumDisplayLength) {
+        //if its a number with scientific notation
+        if (result.toString().includes('e')) {
+            result =    'asd'
+        } else {
         result = result.toFixed(maximumDisplayLength - numberDecimalLength - 1);
+        }
     };
     //display result
     displayValue = result;
@@ -200,7 +205,6 @@ deleteButton.addEventListener('click', (e) => callDelete())
 //numbers and operators work as intended
 document.addEventListener('keydown', (e) => {
     const key = e.key;
-    console.log(key)
     switch (true) {
         case /\d/.test(key)://if pressing a digit
             populateDisplay(key)
@@ -228,11 +232,3 @@ document.addEventListener('keydown', (e) => {
 
 
 
-
-//change github img src
-function mouseOverGithubImg(img) {
-    img.setAttribute('src', '../images/white-github-logo.png')
-}
-function mouseOutGithubImg(img ) {
-    img.setAttribute('src', '../images/github-logo.png')
-}
