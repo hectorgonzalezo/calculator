@@ -5,7 +5,7 @@ body {
     flex-flow: column nowrap;
     align-items: center;
     justify-content: flex-start;
-    background-color: rgb(226, 240, 216);
+    background-color: rgb(220, 243, 203);
     color:rgb(118, 30, 70);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 12px;
@@ -40,7 +40,7 @@ body {
     border-bottom: solid;
     border-width: 0.4em;
     border-color: rgb(202, 198, 198);
-    background-color: rgb(59, 92, 36);
+    background-color: rgb(0, 0, 0);
     color: rgba(255, 255, 255, 0.882);
 }
 
