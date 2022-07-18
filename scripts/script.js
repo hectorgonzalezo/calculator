@@ -98,10 +98,12 @@ function displayResult(result) {
     let numberDecimalLength = Math.floor(result).toString.length;
     if (numberLength >= maximumDisplayLength) {
         //if its a number with scientific notation
-        if (result.toString().includes('e')) {
+        //or a really low number (0.00000012341234)
+        if (result.toString().includes('e') || result < 1) {
             //prevent overflow
             result = result.toExponential(maximumDisplayLength - 5)
         } else if (numberDecimalLength == 1){
+           
             //prevent overflow in really big numbers
             result = result.toString().split('.')[0]
             result = parseInt(result).toExponential(maximumDisplayLength - 5)
