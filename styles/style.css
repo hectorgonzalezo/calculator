@@ -1,4 +1,6 @@
 
+@import './reset.css';
+
 body {
     height: 100vh;
     display: flex;
@@ -138,7 +140,8 @@ footer {
     justify-content: center;
     width: 100vw;
     gap: 1vw;
-    color:rgb(118, 30, 70)
+    color:rgb(118, 30, 70);
+    font-size: 2em;
 }
 
 #github-logo {
