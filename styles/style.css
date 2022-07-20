@@ -25,9 +25,9 @@ body {
     border-color: rgb(202, 198, 198);
     display: flex;
     flex-flow: column;
-    margin-top: auto;
-    height: 400px;
-    width: 300px;
+    margin : auto;
+    min-height: 400px;
+    width: min(60vw, 400px)
 }
 
 #buttons-area,
@@ -41,7 +41,7 @@ body {
     min-height: 90px;
     flex: 0;
     align-items: center;
-    font-size: 33px;
+    font-size: min(6.5vw, 2.7rem);
     border-bottom: solid;
     border-width: 0.9rem;
     border-color: rgb(202, 198, 198);
@@ -59,7 +59,8 @@ body {
 #buttons-area {
     flex: 4;
     display: flex;
-    background-color: rgb(202, 198, 198)
+    background-color: rgb(202, 198, 198);
+    
 }
 
 #left-buttons-area {
@@ -69,7 +70,7 @@ body {
 }
 
 .button {
-    font-size: 30px;
+    font-size: min(6vw, 2.3rem);
     margin: 0.5%;
     border-radius: 20%;
     background-color: rgb(117, 158, 85);
@@ -146,7 +147,7 @@ footer {
     width: 100vw;
     gap: 1vw;
     color:rgb(118, 30, 70);
-    font-size: 1.5rem;
+    font-size: 1.7rem;
 }
 
 #github-logo {
