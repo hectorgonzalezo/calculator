@@ -1,6 +1,9 @@
 
 @import './reset.css';
 
+:root {
+    box-sizing: border-box;
+}
 body {
     height: 100vh;
     display: flex;
@@ -73,6 +76,7 @@ body {
     color: white;
 }
 
+
 #clear-button {
     background-color: rgb(198, 50, 50);
 }
@@ -84,6 +88,7 @@ body {
 .button:hover {
     background-color: rgb(92, 120, 71); 
 }
+
 
 #clear-button:hover {
     background-color: rgb(142, 30, 22);
