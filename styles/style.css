@@ -103,7 +103,10 @@ body {
 #operators-area,
 #top-buttons-area {
     display: flex;
-    flex-wrap: wrap;
+}
+
+#top-buttons-area {
+    flex-wrap: nowrap;
 }
 
 #clear-button,
@@ -117,10 +120,12 @@ body {
 }
 
 #numbers-area {
+    flex-wrap: wrap;
     flex: 3;
 }
 
 #operators-area {
+    flex-wrap: wrap;
     flex-direction: column;
     flex: 1;
 }
